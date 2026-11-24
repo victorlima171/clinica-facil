@@ -50,3 +50,9 @@ Utilize apenas dados fictícios.
 ## Autor
 
 Victor Lenny - SENAC
+
+## Aplicação publicada
+
+Acesse o sistema Clínica Fácil pelo link abaixo:
+
+COLE_AQUI_O_LINK_DO_RENDER   https://clinica-facil-1.onrender.com
