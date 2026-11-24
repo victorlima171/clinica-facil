@@ -1,0 +1,60 @@
+
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+<h2>Gerenciamento de consultas</h2>
+
+<a class="botao" href="/consultas/cadastrar">
+    Nova consulta
+</a>
+
+<div class="tabela">
+    <table>
+        <thead>
+            <tr>
+                <th>Paciente</th>
+                <th>Data</th>
+                <th>Horário</th>
+                <th>Especialidade</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for consulta in consultas %}
+            <tr>
+                <td>{{ consulta.paciente }}</td>
+                <td>{{ consulta.data }}</td>
+                <td>{{ consulta.horario }}</td>
+                <td>{{ consulta.especialidade }}</td>
+                <td>{{ consulta.status }}</td>
+
+                <td>
+                    <a class="editar" href="/consultas/editar/{{ consulta.id }}">
+                        Editar
+                    </a>
+
+                    <form method="POST"
+                          action="/consultas/excluir/{{ consulta.id }}"
+                          class="form-excluir"
+                          onsubmit="return confirm('Deseja excluir esta consulta?')">
+
+                        <button class="excluir" type="submit">
+                            Excluir
+                        </button>
+                    </form>
+                </td>
+            </tr>
+
+            {% else %}
+            <tr>
+                <td colspan="6">Nenhuma consulta cadastrada.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

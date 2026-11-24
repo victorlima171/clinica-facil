@@ -1,0 +1,27 @@
+
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+<section class="inicio">
+    <h2>Bem-vindo à Clínica Fácil</h2>
+    <p>Sistema de gerenciamento de pacientes e consultas.</p>
+</section>
+
+<div class="cards">
+
+    <div class="card">
+        <h2>Pacientes</h2>
+        <p>Cadastre e gerencie os pacientes da clínica.</p>
+        <a class="botao" href="/pacientes">Acessar pacientes</a>
+    </div>
+
+    <div class="card">
+        <h2>Consultas</h2>
+        <p>Organize e acompanhe os agendamentos.</p>
+        <a class="botao" href="/consultas">Acessar consultas</a>
+    </div>
+
+</div>
+
+{% endblock %}

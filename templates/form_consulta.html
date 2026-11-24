@@ -1,0 +1,63 @@
+
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+<h2>
+    {% if consulta %}
+        Editar consulta
+    {% else %}
+        Agendar consulta
+    {% endif %}
+</h2>
+
+<form method="POST" class="formulario">
+
+    <label>Paciente</label>
+
+    <select name="paciente_id" required>
+        <option value="">Selecione um paciente</option>
+
+        {% for paciente in pacientes %}
+        <option value="{{ paciente.id }}"
+            {% if consulta and consulta.paciente_id == paciente.id %}
+                selected
+            {% endif %}>
+            {{ paciente.nome }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <label>Data da consulta</label>
+    <input type="date" name="data"
+           value="{{ consulta.data if consulta else '' }}" required>
+
+    <label>Horário</label>
+    <input type="time" name="horario"
+           value="{{ consulta.horario if consulta else '' }}" required>
+
+    <label>Especialidade</label>
+    <input type="text" name="especialidade"
+           placeholder="Ex: Clínica Geral"
+           value="{{ consulta.especialidade if consulta else '' }}" required>
+
+    <label>Status</label>
+
+    <select name="status">
+        {% for status in ['Agendada', 'Realizada', 'Cancelada'] %}
+        <option value="{{ status }}"
+            {% if consulta and consulta.status == status %}
+                selected
+            {% endif %}>
+            {{ status }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Salvar consulta</button>
+
+    <a href="/consultas">Voltar</a>
+
+</form>
+
+{% endblock %}

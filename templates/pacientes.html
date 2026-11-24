@@ -1,0 +1,61 @@
+
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+<h2>Gerenciamento de pacientes</h2>
+
+<a class="botao" href="/pacientes/cadastrar">
+    Novo paciente
+</a>
+
+<form method="GET" action="/pacientes" class="busca">
+    <input type="text" name="busca" placeholder="Buscar paciente pelo nome">
+    <button type="submit">Buscar</button>
+</form>
+
+<div class="tabela">
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>E-mail</th>
+                <th>Nascimento</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for paciente in pacientes %}
+            <tr>
+                <td>{{ paciente.nome }}</td>
+                <td>{{ paciente.telefone }}</td>
+                <td>{{ paciente.email }}</td>
+                <td>{{ paciente.data_nascimento }}</td>
+                <td>
+                    <a class="editar" href="/pacientes/editar/{{ paciente.id }}">
+                        Editar
+                    </a>
+
+                    <form method="POST"
+                          action="/pacientes/excluir/{{ paciente.id }}"
+                          class="form-excluir"
+                          onsubmit="return confirm('Deseja excluir este paciente e suas consultas?')">
+
+                        <button class="excluir" type="submit">
+                            Excluir
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5">Nenhum paciente encontrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
